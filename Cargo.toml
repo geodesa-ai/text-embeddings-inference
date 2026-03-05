@@ -45,10 +45,10 @@ serial_test = "2.0.0"
 cudarc = { version = "0.13", features =["cuda-12020"], default-features = false }
 intel-mkl-src = { version = "0.8", default-features = false }
 # Kubedoll candle fork (same as mistral.rs)
-candle = { git = "https://github.com/Kubedoll-Heavy-Industries/candle.git", branch = "cagyirey/dev", package = "candle-core" }
-candle-nn = { git = "https://github.com/Kubedoll-Heavy-Industries/candle.git", branch = "cagyirey/dev" }
-candle-transformers = { git = "https://github.com/Kubedoll-Heavy-Industries/candle.git", branch = "cagyirey/dev" }
-candle-flash-attn = { git = "https://github.com/Kubedoll-Heavy-Industries/candle.git", branch = "cagyirey/dev" }
+candle = { git = "ssh://git@github.com/Kubedoll-Heavy-Industries/candle.git", branch = "cagyirey/dev", package = "candle-core" }
+candle-nn = { git = "ssh://git@github.com/Kubedoll-Heavy-Industries/candle.git", branch = "cagyirey/dev" }
+candle-transformers = { git = "ssh://git@github.com/Kubedoll-Heavy-Industries/candle.git", branch = "cagyirey/dev" }
+candle-flash-attn = { git = "ssh://git@github.com/Kubedoll-Heavy-Industries/candle.git", branch = "cagyirey/dev" }
 candle-cublaslt = { version = "0.0.1" }
 candle-layer-norm = { version = "0.0.1" }
 candle-index-select-cu =  { version = "0.0.1", features = ["cuda-11"], default-features = false }
