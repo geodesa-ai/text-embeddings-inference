@@ -6,6 +6,7 @@ version.workspace = true
 edition.workspace = true
 authors.workspace = true
 homepage.workspace = true
+license.workspace = true
 
 [lib]
 path = "src/lib.rs"
@@ -57,8 +58,6 @@ tonic-health = { version = "0.11.0", optional = true }
 tonic-reflection = { version = "0.11.0", optional = true }
 tokio-stream = { version = "0.1.14", optional = true }
 
-# Optional
-cudarc = { workspace = true, optional = true }
 intel-mkl-src = { workspace = true, optional = true }
 
 # Malloc trim hack for linux
@@ -88,9 +87,9 @@ accelerate = ["text-embeddings-backend/accelerate"]
 python = ["text-embeddings-backend/python"]
 ort = ["text-embeddings-backend/ort"]
 candle = ["text-embeddings-backend/candle"]
-candle-cuda = ["candle", "text-embeddings-backend/flash-attn", "dep:cudarc"]
-candle-cuda-turing = ["candle", "text-embeddings-backend/flash-attn-v1", "dep:cudarc"]
-candle-cuda-volta = ["candle", "text-embeddings-backend/cuda", "dep:cudarc"]
-static-linking = ["cudarc?/static-linking", "intel-mkl-src?/mkl-static-lp64-iomp"]
-dynamic-linking = ["cudarc?/dynamic-linking", "intel-mkl-src?/mkl-dynamic-lp64-iomp"]
+candle-cuda = ["candle", "text-embeddings-backend/flash-attn"]
+candle-cuda-turing = ["candle", "text-embeddings-backend/flash-attn-v1"]
+candle-cuda-volta = ["candle", "text-embeddings-backend/cuda"]
+static-linking = ["intel-mkl-src?/mkl-static-lp64-iomp"]
+dynamic-linking = ["intel-mkl-src?/mkl-dynamic-lp64-iomp"]
 google = []

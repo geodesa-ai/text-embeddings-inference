@@ -47,7 +47,11 @@ impl Linear {
         let _enter = self.span.enter();
 
         #[allow(unused)]
-        if let (Device::Cuda(_), Some(cublaslt)) = (x.device(), get_cublas_lt_wrapper()) {
+        if let (true, Device::Cuda(_), Some(cublaslt)) = (
+            experimental_cublaslt_enabled(),
+            x.device(),
+            get_cublas_lt_wrapper(),
+        ) {
             match x.dims() {
                 &[bsize, _, _] => cublaslt.batch_matmul(
                     &self.weight.broadcast_left(bsize)?,
@@ -94,4 +98,10 @@ impl Linear {
             }
         }
     }
+}
+
+fn experimental_cublaslt_enabled() -> bool {
+    std::env::var("TEI_ENABLE_EXPERIMENTAL_CUBLASLT")
+        .map(|value| matches!(value.as_str(), "1" | "true" | "TRUE" | "yes" | "on"))
+        .unwrap_or(false)
 }

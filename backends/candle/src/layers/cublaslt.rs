@@ -2,15 +2,20 @@ use crate::layers::HiddenAct;
 use candle::{Device, Result, Tensor};
 use std::sync::Once;
 
-#[cfg(feature = "cuda")]
-use candle_cublaslt::{fused_batch_matmul, fused_matmul, Activation, CublasLt};
-
 static INIT: Once = Once::new();
 static mut CUBLASLT: Option<CublasLtWrapper> = None;
 
 pub fn get_cublas_lt_wrapper() -> Option<&'static CublasLtWrapper> {
     unsafe {
         INIT.call_once(|| {
+            let enable_cublaslt = std::env::var("TEI_ENABLE_EXPERIMENTAL_CUBLASLT")
+                .map(|value| matches!(value.as_str(), "1" | "true" | "TRUE" | "yes" | "on"))
+                .unwrap_or(false);
+            if !enable_cublaslt {
+                CUBLASLT = None;
+                return;
+            }
+
             #[cfg(not(feature = "cuda"))]
             {
                 CUBLASLT = None;
@@ -26,9 +31,7 @@ pub fn get_cublas_lt_wrapper() -> Option<&'static CublasLtWrapper> {
                     .ok()
                     .and_then(|_| Device::cuda_if_available(0).ok())
                     .and_then(|device| match device {
-                        Device::Cuda(_) => Some(CublasLtWrapper {
-                            cublaslt: CublasLt::new(&device).unwrap(),
-                        }),
+                        Device::Cuda(_) => Some(CublasLtWrapper {}),
                         _ => None,
                     });
             }
@@ -39,10 +42,7 @@ pub fn get_cublas_lt_wrapper() -> Option<&'static CublasLtWrapper> {
 }
 
 #[derive(Debug, Clone)]
-pub struct CublasLtWrapper {
-    #[cfg(feature = "cuda")]
-    pub cublaslt: CublasLt,
-}
+pub struct CublasLtWrapper {}
 
 impl CublasLtWrapper {
     #[allow(clippy::too_many_arguments)]
@@ -58,25 +58,22 @@ impl CublasLtWrapper {
     ) -> Result<Tensor> {
         #[cfg(feature = "cuda")]
         {
-            let inner_act = match act {
-                Some(HiddenAct::Gelu) => Some(Activation::Gelu),
-                Some(HiddenAct::Relu) => Some(Activation::Relu),
-                _ => None,
-            };
-
-            let mut result = fused_matmul(
-                a,
-                b,
-                out,
-                alpha,
-                beta,
-                bias,
-                inner_act,
-                self.cublaslt.clone(),
-            )?;
+            let mut result = b.matmul_with_epilogue(&a.t()?, bias)?;
+            if let Some(alpha) = alpha {
+                result = (result * alpha as f64)?;
+            }
+            if let Some(out) = out {
+                result = if let Some(beta) = beta {
+                    (result + (out * beta as f64)?)?
+                } else {
+                    (result + out)?
+                };
+            }
 
             if Some(HiddenAct::Swiglu) == act {
                 result = candle_nn::ops::swiglu(&result)?;
+            } else if let Some(act) = &act {
+                result = act.forward(&result)?;
             }
             Ok(result)
         }
@@ -99,25 +96,22 @@ impl CublasLtWrapper {
     ) -> Result<Tensor> {
         #[cfg(feature = "cuda")]
         {
-            let inner_act = match act {
-                Some(HiddenAct::Gelu) => Some(Activation::Gelu),
-                Some(HiddenAct::Relu) => Some(Activation::Relu),
-                _ => None,
-            };
-
-            let mut result = fused_batch_matmul(
-                a,
-                b,
-                out,
-                alpha,
-                beta,
-                bias,
-                inner_act,
-                self.cublaslt.clone(),
-            )?;
+            let mut result = b.matmul_with_epilogue(&a.t()?, bias)?;
+            if let Some(alpha) = alpha {
+                result = (result * alpha as f64)?;
+            }
+            if let Some(out) = out {
+                result = if let Some(beta) = beta {
+                    (result + (out * beta as f64)?)?
+                } else {
+                    (result + out)?
+                };
+            }
 
             if Some(HiddenAct::Swiglu) == act {
                 result = candle_nn::ops::swiglu(&result)?;
+            } else if let Some(act) = &act {
+                result = act.forward(&result)?;
             }
             Ok(result)
         }
