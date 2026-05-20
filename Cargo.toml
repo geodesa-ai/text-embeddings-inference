@@ -42,7 +42,6 @@ serde_json = "1.0"
 thiserror = "1.0"
 rand = "0.9"
 serial_test = "2.0.0"
-cudarc = { version = "0.13", features =["cuda-12020"], default-features = false }
 intel-mkl-src = { version = "0.8", default-features = false }
 # Kubedoll candle fork (same as mistral.rs)
 candle = { git = "ssh://git@github.com/Kubedoll-Heavy-Industries/candle.git", branch = "cagyirey/dev", package = "candle-core" }
@@ -51,9 +50,6 @@ candle-transformers = { git = "ssh://git@github.com/Kubedoll-Heavy-Industries/ca
 candle-flash-attn = { git = "ssh://git@github.com/Kubedoll-Heavy-Industries/candle.git", branch = "cagyirey/dev" }
 candle-flash-attn-v1 = { version = "0.0.1" }
 half = { version = "2.3.1", features = ["num-traits"] }
-
-[patch.crates-io]
-cudarc = { git = "https://github.com/Narsil/cudarc" , rev = "8b4f18b4bcd5e4b1a9daf40abc3a2e27f83f06e9"}
 
 [profile.release]
 debug = 0
