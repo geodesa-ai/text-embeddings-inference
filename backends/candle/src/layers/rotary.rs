@@ -71,3 +71,23 @@ pub fn apply_rotary(
     let rope = (x.broadcast_mul(cos)? + rotate_x.broadcast_mul(sin)?)?;
     Ok(rope)
 }
+
+/// Applies NeoX-style rotary embeddings to flash-attention q/k tensors.
+///
+/// TEI's flash models use `[tokens, heads, head_dim]`; Candle's native rotary
+/// kernels operate on `[batch, heads, tokens, head_dim]`, so this helper adapts
+/// the layout and returns fresh q/k tensors instead of mutating q/k views.
+pub fn apply_rotary_qk(
+    q: &Tensor,
+    k: &Tensor,
+    cos: &Tensor,
+    sin: &Tensor,
+) -> Result<(Tensor, Tensor)> {
+    fn apply(x: &Tensor, cos: &Tensor, sin: &Tensor) -> Result<Tensor> {
+        candle_nn::rotary_emb::rope(&x.transpose(0, 1)?.unsqueeze(0)?, cos, sin)?
+            .squeeze(0)?
+            .transpose(0, 1)
+    }
+
+    Ok((apply(q, cos, sin)?, apply(k, cos, sin)?))
+}

@@ -9,7 +9,6 @@ use crate::models::modernbert::{
 use crate::models::Model;
 use candle::{DType, Device, IndexOp, Result, Tensor};
 use candle_nn::VarBuilder;
-use candle_rotary::apply_rotary_inplace;
 use text_embeddings_backend_core::{Batch, ModelType, Pool};
 
 struct ModernBertAttention {
@@ -87,7 +86,7 @@ impl ModernBertAttention {
         let k = qkv.narrow(1, self.num_attention_heads, self.num_attention_heads)?;
         let v = qkv.narrow(1, self.num_attention_heads * 2, self.num_attention_heads)?;
 
-        apply_rotary_inplace(&q, &k, &cos, &sin, true)?;
+        let (q, k) = crate::layers::apply_rotary_qk(&q, &k, &cos, &sin)?;
 
         let window_size = if self.use_local_attention {
             Some(self.local_attention)

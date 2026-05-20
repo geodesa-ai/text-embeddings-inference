@@ -3,7 +3,6 @@ use crate::layers::{get_cos_sin, get_inv_freqs, index_select, HiddenAct, Linear,
 use crate::models::{Model, Qwen2Config};
 use candle::{DType, Device, IndexOp, Result, Tensor};
 use candle_nn::{Embedding, Module, VarBuilder};
-use candle_rotary::apply_rotary_inplace;
 use text_embeddings_backend_core::{Batch, ModelType, Pool};
 
 struct Qwen2Attention {
@@ -101,7 +100,7 @@ impl Qwen2Attention {
             self.num_key_value_heads,
         )?;
 
-        apply_rotary_inplace(&q, &k, &cos, &sin, true)?;
+        let (q, k) = crate::layers::apply_rotary_qk(&q, &k, &cos, &sin)?;
 
         let attention = flash_attn_varlen(
             &q,
