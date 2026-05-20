@@ -569,6 +569,14 @@ impl CandleBackend {
             dense_layers,
         })
     }
+
+    pub fn device_kind(&self) -> &'static str {
+        match &self.device {
+            Device::Cpu => "cpu",
+            Device::Cuda(_) => "cuda",
+            Device::Metal(_) => "metal",
+        }
+    }
 }
 
 impl Backend for CandleBackend {

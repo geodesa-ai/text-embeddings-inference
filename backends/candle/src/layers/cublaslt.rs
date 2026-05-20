@@ -8,6 +8,14 @@ static mut CUBLASLT: Option<CublasLtWrapper> = None;
 pub fn get_cublas_lt_wrapper() -> Option<&'static CublasLtWrapper> {
     unsafe {
         INIT.call_once(|| {
+            let enable_cublaslt = std::env::var("TEI_ENABLE_EXPERIMENTAL_CUBLASLT")
+                .map(|value| matches!(value.as_str(), "1" | "true" | "TRUE" | "yes" | "on"))
+                .unwrap_or(false);
+            if !enable_cublaslt {
+                CUBLASLT = None;
+                return;
+            }
+
             #[cfg(not(feature = "cuda"))]
             {
                 CUBLASLT = None;
