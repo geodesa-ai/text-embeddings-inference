@@ -7,14 +7,8 @@ use clap::ValueEnum;
 #[cfg_attr(feature = "clap", derive(Clone, ValueEnum))]
 pub enum DType {
     // Float16 is not available on accelerate
-    #[cfg(any(
-        feature = "python",
-        all(feature = "candle", not(feature = "accelerate"))
-    ))]
     Float16,
-    #[cfg(any(feature = "python", feature = "candle", feature = "ort"))]
     Float32,
-    #[cfg(feature = "python")]
     Bfloat16,
 }
 
@@ -22,14 +16,8 @@ impl fmt::Display for DType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match self {
             // Float16 is not available on accelerate
-            #[cfg(any(
-                feature = "python",
-                all(feature = "candle", not(feature = "accelerate"))
-            ))]
             DType::Float16 => write!(f, "float16"),
-            #[cfg(any(feature = "python", feature = "candle", feature = "ort"))]
             DType::Float32 => write!(f, "float32"),
-            #[cfg(feature = "python")]
             DType::Bfloat16 => write!(f, "bfloat16"),
         }
     }
