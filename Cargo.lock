@@ -5422,7 +5422,7 @@ dependencies = [
 [[package]]
 name = "ug"
 version = "0.5.0"
-source = "git+ssh://git@github.com/Kubedoll-Heavy-Industries/ug.git#e5afc0aae8c54ea7896aafeebef8d7f834190279"
+source = "git+ssh://git@github.com/Kubedoll-Heavy-Industries/ug.git#7761e9c15c7d85873aee9457e84e38502ab7f16d"
 dependencies = [
  "gemm 0.19.0",
  "half",
@@ -5455,7 +5455,7 @@ dependencies = [
 [[package]]
 name = "ug-cuda"
 version = "0.5.0"
-source = "git+ssh://git@github.com/Kubedoll-Heavy-Industries/ug.git#e5afc0aae8c54ea7896aafeebef8d7f834190279"
+source = "git+ssh://git@github.com/Kubedoll-Heavy-Industries/ug.git#7761e9c15c7d85873aee9457e84e38502ab7f16d"
 dependencies = [
  "cudarc 0.19.4",
  "half",
@@ -5467,7 +5467,7 @@ dependencies = [
 [[package]]
 name = "ug-metal"
 version = "0.5.0"
-source = "git+ssh://git@github.com/Kubedoll-Heavy-Industries/ug.git#e5afc0aae8c54ea7896aafeebef8d7f834190279"
+source = "git+ssh://git@github.com/Kubedoll-Heavy-Industries/ug.git#7761e9c15c7d85873aee9457e84e38502ab7f16d"
 dependencies = [
  "half",
  "metal",
