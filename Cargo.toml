@@ -44,11 +44,11 @@ thiserror = "1.0"
 rand = "0.9"
 serial_test = "2.0.0"
 intel-mkl-src = { version = "0.8", default-features = false }
-# Kubedoll candle fork (same as mistral.rs)
-candle = { git = "ssh://git@github.com/Kubedoll-Heavy-Industries/candle.git", branch = "main", package = "candle-core" }
-candle-nn = { git = "ssh://git@github.com/Kubedoll-Heavy-Industries/candle.git", branch = "main" }
-candle-transformers = { git = "ssh://git@github.com/Kubedoll-Heavy-Industries/candle.git", branch = "main" }
-candle-flash-attn = { git = "ssh://git@github.com/Kubedoll-Heavy-Industries/candle.git", branch = "main" }
+# Geodesa Chalice fork, aligned with Hedron.
+candle = { git = "ssh://git@github.com/geodesa-ai/chalice.git", branch = "codex/candle-cubecl-git-deps", package = "candle-core" }
+candle-nn = { git = "ssh://git@github.com/geodesa-ai/chalice.git", branch = "codex/candle-cubecl-git-deps" }
+candle-transformers = { git = "ssh://git@github.com/geodesa-ai/chalice.git", branch = "codex/candle-cubecl-git-deps" }
+candle-flash-attn = { git = "ssh://git@github.com/geodesa-ai/chalice.git", branch = "codex/candle-cubecl-git-deps" }
 candle-flash-attn-v1 = { version = "0.0.1" }
 half = { version = "2.3.1", features = ["num-traits"] }
 
