@@ -45,10 +45,10 @@ rand = "0.9"
 serial_test = "2.0.0"
 intel-mkl-src = { version = "0.8", default-features = false }
 # Geodesa Chalice fork, aligned with Hedron.
-candle = { package = "chalice-core", git = "ssh://git@github.com/geodesa-ai/chalice.git", branch = "codex/cudarc-geodesa-deps" }
-candle-nn = { package = "chalice-nn", git = "ssh://git@github.com/geodesa-ai/chalice.git", branch = "codex/cudarc-geodesa-deps" }
-candle-transformers = { package = "chalice-transformers", git = "ssh://git@github.com/geodesa-ai/chalice.git", branch = "codex/cudarc-geodesa-deps" }
-candle-flash-attn = { package = "chalice-flash-attn", git = "ssh://git@github.com/geodesa-ai/chalice.git", branch = "codex/cudarc-geodesa-deps" }
+candle = { package = "chalice-core", git = "ssh://git@github.com/geodesa-ai/chalice.git", branch = "main" }
+candle-nn = { package = "chalice-nn", git = "ssh://git@github.com/geodesa-ai/chalice.git", branch = "main" }
+candle-transformers = { package = "chalice-transformers", git = "ssh://git@github.com/geodesa-ai/chalice.git", branch = "main" }
+candle-flash-attn = { package = "chalice-flash-attn", git = "ssh://git@github.com/geodesa-ai/chalice.git", branch = "main" }
 candle-flash-attn-v1 = { version = "0.0.1" }
 half = { version = "2.3.1", features = ["num-traits"] }
 
