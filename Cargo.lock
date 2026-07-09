@@ -425,12 +425,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "812e12b5285cc515a9c72a5c1d3b6d46a19dac5acfef5265968c166106e31dd3"
 
 [[package]]
-name = "block"
-version = "0.1.6"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0d8c1fef690941d3e7788d328517591fecc684c084084702d6ff1641e993699a"
-
-[[package]]
 name = "block-buffer"
 version = "0.10.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -493,7 +487,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a9f51e2ecf6efe9737af8f993433c839f956d2b6ed4fd2dd4a7c6d8b0fa667ff"
 dependencies = [
  "byteorder",
- "candle-kernels 0.9.1",
+ "candle-kernels",
  "cudarc 0.16.6",
  "gemm 0.17.1",
  "half",
@@ -505,54 +499,10 @@ dependencies = [
  "rayon",
  "safetensors 0.4.5",
  "thiserror 1.0.69",
- "ug 0.4.0",
- "ug-cuda 0.4.0",
+ "ug",
+ "ug-cuda",
  "yoke 0.7.5",
  "zip 1.1.4",
-]
-
-[[package]]
-name = "candle-core"
-version = "0.10.2"
-source = "git+ssh://git@github.com/geodesa-ai/chalice.git?branch=codex%2Fcandle-cubecl-git-deps#ab5e6dd928696bfa85c83b50d1809a50d81e2baa"
-dependencies = [
- "accelerate-src",
- "byteorder",
- "candle-kernels 0.10.2",
- "candle-metal-kernels",
- "candle-ug",
- "cudarc 0.19.8",
- "float8",
- "gemm 0.19.0",
- "half",
- "intel-mkl-src",
- "libc",
- "libm",
- "memmap2",
- "num-traits",
- "num_cpus",
- "objc2-foundation",
- "objc2-metal",
- "parking_lot",
- "rand 0.9.2",
- "rand_distr",
- "rayon",
- "safetensors 0.8.0",
- "thiserror 2.0.17",
- "tokenizers 0.23.1",
- "yoke 0.8.1",
- "zip 8.6.0",
-]
-
-[[package]]
-name = "candle-flash-attn"
-version = "0.10.2"
-source = "git+ssh://git@github.com/geodesa-ai/chalice.git?branch=codex%2Fcandle-cubecl-git-deps#ab5e6dd928696bfa85c83b50d1809a50d81e2baa"
-dependencies = [
- "anyhow",
- "candle-core 0.10.2",
- "cudaforge",
- "half",
 ]
 
 [[package]]
@@ -562,7 +512,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "77052ab8dd38cbdce0daaefcb900fc93392a4be82ffe38065b4bc7c211f2ade6"
 dependencies = [
  "anyhow",
- "candle-core 0.9.1",
+ "candle-core",
  "half",
  "num_cpus",
  "rayon",
@@ -575,75 +525,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9fcd989c2143aa754370b5bfee309e35fbd259e83d9ecf7a73d23d8508430775"
 dependencies = [
  "bindgen_cuda",
-]
-
-[[package]]
-name = "candle-kernels"
-version = "0.10.2"
-source = "git+ssh://git@github.com/geodesa-ai/chalice.git?branch=codex%2Fcandle-cubecl-git-deps#ab5e6dd928696bfa85c83b50d1809a50d81e2baa"
-dependencies = [
- "cudaforge",
-]
-
-[[package]]
-name = "candle-metal-kernels"
-version = "0.10.2"
-source = "git+ssh://git@github.com/geodesa-ai/chalice.git?branch=codex%2Fcandle-cubecl-git-deps#ab5e6dd928696bfa85c83b50d1809a50d81e2baa"
-dependencies = [
- "dashmap 6.1.0",
- "half",
- "objc2",
- "objc2-foundation",
- "objc2-metal",
- "parking_lot",
- "thiserror 2.0.17",
- "tracing",
-]
-
-[[package]]
-name = "candle-nn"
-version = "0.10.2"
-source = "git+ssh://git@github.com/geodesa-ai/chalice.git?branch=codex%2Fcandle-cubecl-git-deps#ab5e6dd928696bfa85c83b50d1809a50d81e2baa"
-dependencies = [
- "accelerate-src",
- "candle-core 0.10.2",
- "candle-metal-kernels",
- "half",
- "libc",
- "num-traits",
- "objc2-metal",
- "rayon",
- "safetensors 0.8.0",
- "serde",
- "thiserror 2.0.17",
-]
-
-[[package]]
-name = "candle-transformers"
-version = "0.10.2"
-source = "git+ssh://git@github.com/geodesa-ai/chalice.git?branch=codex%2Fcandle-cubecl-git-deps#ab5e6dd928696bfa85c83b50d1809a50d81e2baa"
-dependencies = [
- "byteorder",
- "candle-core 0.10.2",
- "candle-nn",
- "fancy-regex",
- "num-traits",
- "rand 0.9.2",
- "rayon",
- "serde",
- "serde_json",
- "serde_plain",
- "tracing",
-]
-
-[[package]]
-name = "candle-ug"
-version = "0.10.2"
-source = "git+ssh://git@github.com/geodesa-ai/chalice.git?branch=codex%2Fcandle-cubecl-git-deps#ab5e6dd928696bfa85c83b50d1809a50d81e2baa"
-dependencies = [
- "ug 0.5.0",
- "ug-cuda 0.5.0",
- "ug-metal",
 ]
 
 [[package]]
@@ -678,6 +559,108 @@ name = "cfg_aliases"
 version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "613afe47fcd5fac7ccf1db93babcb082c5994d996f20b8b159f2ad1658eb5724"
+
+[[package]]
+name = "chalice-core"
+version = "0.10.2"
+source = "git+ssh://git@github.com/geodesa-ai/chalice.git?branch=main#7f34dfe60c9c1fe07d6f50d9f688c442f00ea82c"
+dependencies = [
+ "accelerate-src",
+ "byteorder",
+ "chalice-kernels",
+ "chalice-metal-kernels",
+ "cudarc 0.19.8",
+ "float8",
+ "gemm 0.19.0",
+ "half",
+ "intel-mkl-src",
+ "libc",
+ "libm",
+ "memmap2",
+ "num-traits",
+ "num_cpus",
+ "objc2-foundation",
+ "objc2-metal",
+ "parking_lot",
+ "rand 0.9.2",
+ "rand_distr",
+ "rayon",
+ "safetensors 0.8.0",
+ "thiserror 2.0.17",
+ "tokenizers 0.23.1",
+ "yoke 0.8.1",
+ "zip 8.6.0",
+]
+
+[[package]]
+name = "chalice-flash-attn"
+version = "0.10.2"
+source = "git+ssh://git@github.com/geodesa-ai/chalice.git?branch=main#7f34dfe60c9c1fe07d6f50d9f688c442f00ea82c"
+dependencies = [
+ "anyhow",
+ "chalice-core",
+ "cudaforge",
+ "half",
+]
+
+[[package]]
+name = "chalice-kernels"
+version = "0.10.2"
+source = "git+ssh://git@github.com/geodesa-ai/chalice.git?branch=main#7f34dfe60c9c1fe07d6f50d9f688c442f00ea82c"
+dependencies = [
+ "cudaforge",
+]
+
+[[package]]
+name = "chalice-metal-kernels"
+version = "0.10.2"
+source = "git+ssh://git@github.com/geodesa-ai/chalice.git?branch=main#7f34dfe60c9c1fe07d6f50d9f688c442f00ea82c"
+dependencies = [
+ "dashmap 6.1.0",
+ "half",
+ "objc2",
+ "objc2-foundation",
+ "objc2-metal",
+ "parking_lot",
+ "thiserror 2.0.17",
+ "tracing",
+]
+
+[[package]]
+name = "chalice-nn"
+version = "0.10.2"
+source = "git+ssh://git@github.com/geodesa-ai/chalice.git?branch=main#7f34dfe60c9c1fe07d6f50d9f688c442f00ea82c"
+dependencies = [
+ "accelerate-src",
+ "chalice-core",
+ "chalice-metal-kernels",
+ "half",
+ "libc",
+ "num-traits",
+ "objc2-metal",
+ "rayon",
+ "safetensors 0.8.0",
+ "serde",
+ "thiserror 2.0.17",
+]
+
+[[package]]
+name = "chalice-transformers"
+version = "0.10.2"
+source = "git+ssh://git@github.com/geodesa-ai/chalice.git?branch=main#7f34dfe60c9c1fe07d6f50d9f688c442f00ea82c"
+dependencies = [
+ "byteorder",
+ "chalice-core",
+ "chalice-nn",
+ "fancy-regex",
+ "num-traits",
+ "rand 0.9.2",
+ "rayon",
+ "serde",
+ "serde_json",
+ "serde_plain",
+ "tracing",
+]
 
 [[package]]
 name = "chrono"
@@ -811,17 +794,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "773648b94d0e5d620f64f280777445740e61fe701025087ec8b57f45c791888b"
 
 [[package]]
-name = "core-graphics-types"
-version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3d44a101f213f6c4cdc1853d4b78aef6db6bdfa3468798cc1d9912f4735013eb"
-dependencies = [
- "bitflags 2.10.0",
- "core-foundation 0.10.1",
- "libc",
-]
-
-[[package]]
 name = "cpufeatures"
 version = "0.2.17"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -921,7 +893,7 @@ dependencies = [
 [[package]]
 name = "cudarc"
 version = "0.19.8"
-source = "git+ssh://git@github.com/Kubedoll-Heavy-Industries/cudarc.git?branch=cagyirey%2Fdev#ffd7cdbdfa52a4f414e38172384e91a994ce7999"
+source = "git+ssh://git@github.com/geodesa-ai/cudarc.git?branch=cagyirey%2Fdev#f20620daeeac497e368b0630ce0980968ee70db5"
 dependencies = [
  "float8",
  "half",
@@ -1116,7 +1088,7 @@ dependencies = [
  "libc",
  "option-ext",
  "redox_users 0.5.2",
- "windows-sys 0.59.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -1224,7 +1196,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "39cab71617ae0d63f51a36d69f866391735b51691dbda63cf6f96d042b63efeb"
 dependencies = [
  "libc",
- "windows-sys 0.59.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -1338,28 +1310,7 @@ version = "0.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f6f339eb8adc052cd2ca78910fda869aefa38d22d5cb648e6485e4d3fc06f3b1"
 dependencies = [
- "foreign-types-shared 0.1.1",
-]
-
-[[package]]
-name = "foreign-types"
-version = "0.5.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d737d9aa519fb7b749cbc3b962edcf310a8dd1f4b67c91c4f83975dbdd17d965"
-dependencies = [
- "foreign-types-macros",
- "foreign-types-shared 0.3.1",
-]
-
-[[package]]
-name = "foreign-types-macros"
-version = "0.2.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1a5c6c585bc94aaf2c7b51dd4c2ba22680844aba4c687be581871a6f518c5742"
-dependencies = [
- "proc-macro2",
- "quote",
- "syn 2.0.112",
+ "foreign-types-shared",
 ]
 
 [[package]]
@@ -1367,12 +1318,6 @@ name = "foreign-types-shared"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "00b0228411908ca8685dba7fc2cdd70ec9990a6e753e89b6ac91a84c40fbaf4b"
-
-[[package]]
-name = "foreign-types-shared"
-version = "0.3.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "aa9a19cbb55df58761df49b23516a86d432839add4af60fc256da840f66ed35b"
 
 [[package]]
 name = "form_urlencoded"
@@ -2655,15 +2600,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "670fdfda89751bc4a84ac13eaa63e205cf0fd22b4c9a5fbfa085b63c1f1d3a30"
 
 [[package]]
-name = "malloc_buf"
-version = "0.0.6"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "62bb907fe88d54d8d9ce32a3cceab4218ed2f6b7d35617cafe9adf84e43919cb"
-dependencies = [
- "libc",
-]
-
-[[package]]
 name = "matchers"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2702,21 +2638,6 @@ checksum = "d1219ed1b7f229ee7104d281dd01d6802fe28bb6e95d292942c4daacdeb798c0"
 dependencies = [
  "libc",
  "stable_deref_trait",
-]
-
-[[package]]
-name = "metal"
-version = "0.33.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c7047791b5bc903b8cd963014b355f71dc9864a9a0b727057676c1dcae5cbc15"
-dependencies = [
- "bitflags 2.10.0",
- "block",
- "core-graphics-types",
- "foreign-types 0.5.0",
- "log",
- "objc",
- "paste",
 ]
 
 [[package]]
@@ -2905,7 +2826,7 @@ version = "0.50.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7957b9740744892f114936ab4a57b3f487491bbeafaf8083688b16841a4240e5"
 dependencies = [
- "windows-sys 0.59.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -3035,15 +2956,6 @@ name = "number_prefix"
 version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "830b246a0e5f20af87141b25c173cd1b609bd7779a4617d6ec582abaf90870f3"
-
-[[package]]
-name = "objc"
-version = "0.2.7"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "915b1b472bc21c53464d6c8461c9d3af805ba1ef837e1cac254428f4a77177b1"
-dependencies = [
- "malloc_buf",
-]
 
 [[package]]
 name = "objc2"
@@ -3191,7 +3103,7 @@ checksum = "08838db121398ad17ab8531ce9de97b244589089e290a384c900cb9ff7434328"
 dependencies = [
  "bitflags 2.10.0",
  "cfg-if",
- "foreign-types 0.3.2",
+ "foreign-types",
  "libc",
  "once_cell",
  "openssl-macros",
@@ -3904,7 +3816,7 @@ dependencies = [
  "once_cell",
  "socket2 0.6.1",
  "tracing",
- "windows-sys 0.59.0",
+ "windows-sys 0.60.2",
 ]
 
 [[package]]
@@ -4252,7 +4164,7 @@ dependencies = [
  "errno",
  "libc",
  "linux-raw-sys 0.11.0",
- "windows-sys 0.59.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -4813,7 +4725,7 @@ dependencies = [
  "getrandom 0.3.4",
  "once_cell",
  "rustix 1.1.3",
- "windows-sys 0.59.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -4839,11 +4751,11 @@ version = "1.8.3"
 dependencies = [
  "accelerate-src",
  "anyhow",
- "candle-core 0.10.2",
- "candle-flash-attn",
  "candle-flash-attn-v1",
- "candle-nn",
- "candle-transformers",
+ "chalice-core",
+ "chalice-flash-attn",
+ "chalice-nn",
+ "chalice-transformers",
  "hf-hub",
  "insta",
  "intel-mkl-src",
@@ -5670,26 +5582,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "ug"
-version = "0.5.0"
-source = "git+ssh://git@github.com/Kubedoll-Heavy-Industries/ug.git#7761e9c15c7d85873aee9457e84e38502ab7f16d"
-dependencies = [
- "gemm 0.19.0",
- "half",
- "libloading 0.9.0",
- "memmap2",
- "num",
- "num-traits",
- "rayon",
- "rustc-hash",
- "safetensors 0.8.0",
- "serde",
- "thiserror 2.0.17",
- "tracing",
- "yoke 0.8.1",
-]
-
-[[package]]
 name = "ug-cuda"
 version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -5699,31 +5591,7 @@ dependencies = [
  "half",
  "serde",
  "thiserror 1.0.69",
- "ug 0.4.0",
-]
-
-[[package]]
-name = "ug-cuda"
-version = "0.5.0"
-source = "git+ssh://git@github.com/Kubedoll-Heavy-Industries/ug.git#7761e9c15c7d85873aee9457e84e38502ab7f16d"
-dependencies = [
- "cudarc 0.19.8",
- "half",
- "serde",
- "thiserror 2.0.17",
- "ug 0.5.0",
-]
-
-[[package]]
-name = "ug-metal"
-version = "0.5.0"
-source = "git+ssh://git@github.com/Kubedoll-Heavy-Industries/ug.git#7761e9c15c7d85873aee9457e84e38502ab7f16d"
-dependencies = [
- "half",
- "metal",
- "serde",
- "thiserror 2.0.17",
- "ug 0.5.0",
+ "ug",
 ]
 
 [[package]]
@@ -6172,7 +6040,7 @@ version = "0.1.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c2a7b1c03c876122aa43f3020e6c3c3ee5c05081c9a00739faf7503aeba10d22"
 dependencies = [
- "windows-sys 0.59.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
