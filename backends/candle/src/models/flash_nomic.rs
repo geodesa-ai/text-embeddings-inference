@@ -4,7 +4,6 @@ use crate::models::nomic::{NomicBertEmbeddings, NomicMLP};
 use crate::models::{Model, NomicConfig};
 use candle::{DType, Device, IndexOp, Result, Tensor, D};
 use candle_nn::VarBuilder;
-use candle_rotary::apply_rotary_inplace;
 use text_embeddings_backend_core::{Batch, ModelType, Pool};
 
 struct NomicAttention {
@@ -78,11 +77,11 @@ impl NomicAttention {
         let qkv = qkv.reshape(new_qkv_shape.as_slice())?;
         let qkv = qkv.chunk(3, 1)?;
 
-        apply_rotary_inplace(&qkv[0], &qkv[1], &cos, &sin, true)?;
+        let (q, k) = crate::layers::apply_rotary_qk(&qkv[0], &qkv[1], cos, sin)?;
 
         let attention = flash_attn_varlen(
-            &qkv[0],
-            &qkv[1],
+            &q,
+            &k,
             &qkv[2],
             None,
             cu_seqlens,

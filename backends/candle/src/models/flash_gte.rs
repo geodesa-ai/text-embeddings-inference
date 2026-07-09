@@ -5,7 +5,6 @@ use crate::models::{Model, PositionEmbeddingType};
 
 use candle::{DType, Device, IndexOp, Result, Tensor};
 use candle_nn::{Embedding, Module, VarBuilder};
-use candle_rotary::apply_rotary_inplace;
 use text_embeddings_backend_core::{Batch, ModelType, Pool};
 
 struct GTEAttention {
@@ -75,7 +74,7 @@ impl GTEAttention {
         let k = qkv.narrow(1, self.num_attention_heads, self.num_attention_heads)?;
         let v = qkv.narrow(1, self.num_attention_heads * 2, self.num_attention_heads)?;
 
-        apply_rotary_inplace(&q, &k, &cos, &sin, true)?;
+        let (q, k) = crate::layers::apply_rotary_qk(&q, &k, &cos, &sin)?;
 
         let attention = flash_attn_varlen(
             &q,

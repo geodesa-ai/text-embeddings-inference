@@ -90,35 +90,20 @@ impl Gemma3RMSNorm {
             Device::Cuda(_) => {
                 #[cfg(feature = "cuda")]
                 {
-                    use candle_layer_norm::{fused_add_rms_norm, rms_norm};
-
-                    let original_shape = hidden_states.shape();
-                    let hidden_states = hidden_states.flatten_to(D::Minus2)?;
+                    let weight = (&self.weight + 1.0)?;
 
                     if let Some(residual) = residual {
-                        let residual = residual.flatten_to(D::Minus2)?;
-
-                        let (result, residual_add) = fused_add_rms_norm(
-                            &hidden_states,
-                            &residual,
-                            &(&self.weight + 1.0)?,
-                            None,
-                            self.epsilon,
-                        )?;
-                        Ok((
-                            result.reshape(original_shape)?,
-                            residual_add.reshape(original_shape)?,
-                        ))
+                        let residual_add = hidden_states.add(residual)?;
+                        let result =
+                            candle_nn::ops::rms_norm(&residual_add, &weight, self.epsilon)?;
+                        Ok((result, residual_add))
                     } else {
                         let residual_add = hidden_states.clone();
 
                         let result =
-                            rms_norm(&hidden_states, &(&self.weight + 1.0)?, None, self.epsilon)?;
+                            candle_nn::ops::rms_norm(hidden_states, &weight, self.epsilon)?;
 
-                        Ok((
-                            result.reshape(original_shape)?,
-                            residual_add.reshape(original_shape)?,
-                        ))
+                        Ok((result, residual_add))
                     }
                 }
                 #[cfg(not(feature = "cuda"))]
