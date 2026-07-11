@@ -563,7 +563,7 @@ checksum = "613afe47fcd5fac7ccf1db93babcb082c5994d996f20b8b159f2ad1658eb5724"
 [[package]]
 name = "chalice-core"
 version = "0.10.2"
-source = "git+ssh://git@github.com/geodesa-ai/chalice.git?branch=main#7f34dfe60c9c1fe07d6f50d9f688c442f00ea82c"
+source = "git+ssh://git@github.com/geodesa-ai/chalice.git?rev=42825ef4c5e1879fd619562fa31572b59d86ac5f#42825ef4c5e1879fd619562fa31572b59d86ac5f"
 dependencies = [
  "accelerate-src",
  "byteorder",
@@ -595,7 +595,7 @@ dependencies = [
 [[package]]
 name = "chalice-flash-attn"
 version = "0.10.2"
-source = "git+ssh://git@github.com/geodesa-ai/chalice.git?branch=main#7f34dfe60c9c1fe07d6f50d9f688c442f00ea82c"
+source = "git+ssh://git@github.com/geodesa-ai/chalice.git?rev=42825ef4c5e1879fd619562fa31572b59d86ac5f#42825ef4c5e1879fd619562fa31572b59d86ac5f"
 dependencies = [
  "anyhow",
  "chalice-core",
@@ -606,7 +606,7 @@ dependencies = [
 [[package]]
 name = "chalice-kernels"
 version = "0.10.2"
-source = "git+ssh://git@github.com/geodesa-ai/chalice.git?branch=main#7f34dfe60c9c1fe07d6f50d9f688c442f00ea82c"
+source = "git+ssh://git@github.com/geodesa-ai/chalice.git?rev=42825ef4c5e1879fd619562fa31572b59d86ac5f#42825ef4c5e1879fd619562fa31572b59d86ac5f"
 dependencies = [
  "cudaforge",
 ]
@@ -614,7 +614,7 @@ dependencies = [
 [[package]]
 name = "chalice-metal-kernels"
 version = "0.10.2"
-source = "git+ssh://git@github.com/geodesa-ai/chalice.git?branch=main#7f34dfe60c9c1fe07d6f50d9f688c442f00ea82c"
+source = "git+ssh://git@github.com/geodesa-ai/chalice.git?rev=42825ef4c5e1879fd619562fa31572b59d86ac5f#42825ef4c5e1879fd619562fa31572b59d86ac5f"
 dependencies = [
  "dashmap 6.1.0",
  "half",
@@ -629,7 +629,7 @@ dependencies = [
 [[package]]
 name = "chalice-nn"
 version = "0.10.2"
-source = "git+ssh://git@github.com/geodesa-ai/chalice.git?branch=main#7f34dfe60c9c1fe07d6f50d9f688c442f00ea82c"
+source = "git+ssh://git@github.com/geodesa-ai/chalice.git?rev=42825ef4c5e1879fd619562fa31572b59d86ac5f#42825ef4c5e1879fd619562fa31572b59d86ac5f"
 dependencies = [
  "accelerate-src",
  "chalice-core",
@@ -647,7 +647,7 @@ dependencies = [
 [[package]]
 name = "chalice-transformers"
 version = "0.10.2"
-source = "git+ssh://git@github.com/geodesa-ai/chalice.git?branch=main#7f34dfe60c9c1fe07d6f50d9f688c442f00ea82c"
+source = "git+ssh://git@github.com/geodesa-ai/chalice.git?rev=42825ef4c5e1879fd619562fa31572b59d86ac5f#42825ef4c5e1879fd619562fa31572b59d86ac5f"
 dependencies = [
  "byteorder",
  "chalice-core",
