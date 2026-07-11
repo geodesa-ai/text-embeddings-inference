@@ -563,7 +563,7 @@ checksum = "613afe47fcd5fac7ccf1db93babcb082c5994d996f20b8b159f2ad1658eb5724"
 [[package]]
 name = "chalice-core"
 version = "0.10.2"
-source = "git+ssh://git@github.com/geodesa-ai/chalice.git?branch=main#7f34dfe60c9c1fe07d6f50d9f688c442f00ea82c"
+source = "git+ssh://git@github.com/geodesa-ai/chalice.git?rev=42825ef4c5e1879fd619562fa31572b59d86ac5f#42825ef4c5e1879fd619562fa31572b59d86ac5f"
 dependencies = [
  "accelerate-src",
  "byteorder",
@@ -595,7 +595,7 @@ dependencies = [
 [[package]]
 name = "chalice-flash-attn"
 version = "0.10.2"
-source = "git+ssh://git@github.com/geodesa-ai/chalice.git?branch=main#7f34dfe60c9c1fe07d6f50d9f688c442f00ea82c"
+source = "git+ssh://git@github.com/geodesa-ai/chalice.git?rev=42825ef4c5e1879fd619562fa31572b59d86ac5f#42825ef4c5e1879fd619562fa31572b59d86ac5f"
 dependencies = [
  "anyhow",
  "chalice-core",
@@ -606,7 +606,7 @@ dependencies = [
 [[package]]
 name = "chalice-kernels"
 version = "0.10.2"
-source = "git+ssh://git@github.com/geodesa-ai/chalice.git?branch=main#7f34dfe60c9c1fe07d6f50d9f688c442f00ea82c"
+source = "git+ssh://git@github.com/geodesa-ai/chalice.git?rev=42825ef4c5e1879fd619562fa31572b59d86ac5f#42825ef4c5e1879fd619562fa31572b59d86ac5f"
 dependencies = [
  "cudaforge",
 ]
@@ -614,7 +614,7 @@ dependencies = [
 [[package]]
 name = "chalice-metal-kernels"
 version = "0.10.2"
-source = "git+ssh://git@github.com/geodesa-ai/chalice.git?branch=main#7f34dfe60c9c1fe07d6f50d9f688c442f00ea82c"
+source = "git+ssh://git@github.com/geodesa-ai/chalice.git?rev=42825ef4c5e1879fd619562fa31572b59d86ac5f#42825ef4c5e1879fd619562fa31572b59d86ac5f"
 dependencies = [
  "dashmap 6.1.0",
  "half",
@@ -629,7 +629,7 @@ dependencies = [
 [[package]]
 name = "chalice-nn"
 version = "0.10.2"
-source = "git+ssh://git@github.com/geodesa-ai/chalice.git?branch=main#7f34dfe60c9c1fe07d6f50d9f688c442f00ea82c"
+source = "git+ssh://git@github.com/geodesa-ai/chalice.git?rev=42825ef4c5e1879fd619562fa31572b59d86ac5f#42825ef4c5e1879fd619562fa31572b59d86ac5f"
 dependencies = [
  "accelerate-src",
  "chalice-core",
@@ -647,7 +647,7 @@ dependencies = [
 [[package]]
 name = "chalice-transformers"
 version = "0.10.2"
-source = "git+ssh://git@github.com/geodesa-ai/chalice.git?branch=main#7f34dfe60c9c1fe07d6f50d9f688c442f00ea82c"
+source = "git+ssh://git@github.com/geodesa-ai/chalice.git?rev=42825ef4c5e1879fd619562fa31572b59d86ac5f#42825ef4c5e1879fd619562fa31572b59d86ac5f"
 dependencies = [
  "byteorder",
  "chalice-core",
@@ -1088,7 +1088,7 @@ dependencies = [
  "libc",
  "option-ext",
  "redox_users 0.5.2",
- "windows-sys 0.61.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -1196,7 +1196,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "39cab71617ae0d63f51a36d69f866391735b51691dbda63cf6f96d042b63efeb"
 dependencies = [
  "libc",
- "windows-sys 0.61.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -2826,7 +2826,7 @@ version = "0.50.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7957b9740744892f114936ab4a57b3f487491bbeafaf8083688b16841a4240e5"
 dependencies = [
- "windows-sys 0.61.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -3816,7 +3816,7 @@ dependencies = [
  "once_cell",
  "socket2 0.6.1",
  "tracing",
- "windows-sys 0.60.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -4164,7 +4164,7 @@ dependencies = [
  "errno",
  "libc",
  "linux-raw-sys 0.11.0",
- "windows-sys 0.61.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -4725,7 +4725,7 @@ dependencies = [
  "getrandom 0.3.4",
  "once_cell",
  "rustix 1.1.3",
- "windows-sys 0.61.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -6040,7 +6040,7 @@ version = "0.1.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c2a7b1c03c876122aa43f3020e6c3c3ee5c05081c9a00739faf7503aeba10d22"
 dependencies = [
- "windows-sys 0.61.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -6556,3 +6556,63 @@ name = "zmij"
 version = "1.0.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e3280a1b827474fcd5dbef4b35a674deb52ba5c312363aef9135317df179d81b"
+
+[[patch.unused]]
+name = "llguidance"
+version = "1.6.1"
+
+[[patch.unused]]
+name = "toktrie_hf_tokenizers"
+version = "1.6.1"
+
+[[patch.unused]]
+name = "cudarc"
+version = "0.19.4"
+
+[[patch.unused]]
+name = "candle-core"
+version = "0.10.2"
+
+[[patch.unused]]
+name = "candle-cubecl"
+version = "0.10.2"
+
+[[patch.unused]]
+name = "candle-flash-attn"
+version = "0.10.2"
+
+[[patch.unused]]
+name = "candle-flash-attn-v3"
+version = "0.10.2"
+
+[[patch.unused]]
+name = "candle-flashinfer"
+version = "0.10.2"
+
+[[patch.unused]]
+name = "candle-metal-kernels"
+version = "0.10.2"
+
+[[patch.unused]]
+name = "candle-metal-sampling"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "candle-nn"
+version = "0.10.2"
+
+[[patch.unused]]
+name = "candle-transformers"
+version = "0.10.2"
+
+[[patch.unused]]
+name = "cudarc"
+version = "0.19.4"
+
+[[patch.unused]]
+name = "openinference-instrumentation"
+version = "0.1.1"
+
+[[patch.unused]]
+name = "openinference-semantic-conventions"
+version = "0.1.1"
