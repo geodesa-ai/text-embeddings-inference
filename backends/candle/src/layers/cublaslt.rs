@@ -58,7 +58,7 @@ impl CublasLtWrapper {
     ) -> Result<Tensor> {
         #[cfg(feature = "cuda")]
         {
-            let mut result = b.matmul_with_epilogue(&a.t()?, bias)?;
+            let mut result = b.matmul_with_epilogue(&a.t()?, bias, None)?;
             if let Some(alpha) = alpha {
                 result = (result * alpha as f64)?;
             }
@@ -96,7 +96,7 @@ impl CublasLtWrapper {
     ) -> Result<Tensor> {
         #[cfg(feature = "cuda")]
         {
-            let mut result = b.matmul_with_epilogue(&a.t()?, bias)?;
+            let mut result = b.matmul_with_epilogue(&a.t()?, bias, None)?;
             if let Some(alpha) = alpha {
                 result = (result * alpha as f64)?;
             }
