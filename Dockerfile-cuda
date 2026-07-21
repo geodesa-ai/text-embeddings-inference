@@ -68,9 +68,9 @@ RUN --mount=type=secret,id=actions_results_url,env=ACTIONS_RESULTS_URL \
     --mount=type=secret,id=actions_runtime_token,env=ACTIONS_RUNTIME_TOKEN \
     if [ ${CUDA_COMPUTE_CAP} -ge 75 -a ${CUDA_COMPUTE_CAP} -lt 80 ]; \
     then \
-        cargo chef cook --release --features candle-cuda-turing --features static-linking --no-default-features --recipe-path recipe.json && sccache -s; \
+        cargo chef cook --release --features chalice-cuda-turing --features static-linking --no-default-features --recipe-path recipe.json && sccache -s; \
     else \
-        cargo chef cook --release --features candle-cuda --features static-linking --no-default-features --recipe-path recipe.json && sccache -s; \
+        cargo chef cook --release --features chalice-cuda --features static-linking --no-default-features --recipe-path recipe.json && sccache -s; \
     fi;
 
 COPY backends backends
@@ -85,9 +85,9 @@ RUN --mount=type=secret,id=actions_results_url,env=ACTIONS_RESULTS_URL \
     --mount=type=secret,id=actions_runtime_token,env=ACTIONS_RUNTIME_TOKEN \
     if [ ${CUDA_COMPUTE_CAP} -ge 75 -a ${CUDA_COMPUTE_CAP} -lt 80 ]; \
     then \
-        cargo build --release --bin text-embeddings-router -F candle-cuda-turing -F static-linking -F http --no-default-features && sccache -s; \
+        cargo build --release --bin text-embeddings-router -F chalice-cuda-turing -F static-linking -F http --no-default-features && sccache -s; \
     else \
-        cargo build --release --bin text-embeddings-router -F candle-cuda -F static-linking -F http --no-default-features && sccache -s; \
+        cargo build --release --bin text-embeddings-router -F chalice-cuda -F static-linking -F http --no-default-features && sccache -s; \
     fi;
 
 FROM builder AS grpc-builder
@@ -108,9 +108,9 @@ RUN --mount=type=secret,id=actions_results_url,env=ACTIONS_RESULTS_URL \
     --mount=type=secret,id=actions_runtime_token,env=ACTIONS_RUNTIME_TOKEN \
     if [ ${CUDA_COMPUTE_CAP} -ge 75 -a ${CUDA_COMPUTE_CAP} -lt 80 ]; \
     then \
-        cargo build --release --bin text-embeddings-router -F candle-cuda-turing -F static-linking -F grpc --no-default-features && sccache -s; \
+        cargo build --release --bin text-embeddings-router -F chalice-cuda-turing -F static-linking -F grpc --no-default-features && sccache -s; \
     else \
-        cargo build --release --bin text-embeddings-router -F candle-cuda -F static-linking -F grpc --no-default-features && sccache -s; \
+        cargo build --release --bin text-embeddings-router -F chalice-cuda -F static-linking -F grpc --no-default-features && sccache -s; \
     fi;
 
 FROM nvidia/cuda:12.2.0-base-ubuntu22.04 AS base

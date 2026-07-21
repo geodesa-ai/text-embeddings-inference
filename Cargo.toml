@@ -1,7 +1,7 @@
 [workspace]
 members = [
     "backends",
-    "backends/candle",
+    "backends/chalice",
     "backends/ort",
     "backends/core",
     "backends/python",
@@ -11,7 +11,7 @@ members = [
 ]
 default-members = [
     "backends",
-    "backends/candle",
+    "backends/chalice",
     "backends/ort",
     "backends/core",
     "backends/python",
@@ -45,11 +45,10 @@ rand = "0.9"
 serial_test = "2.0.0"
 intel-mkl-src = { version = "0.8", default-features = false }
 # Geodesa Chalice fork, aligned with Hedron.
-candle = { package = "chalice-core", git = "ssh://git@github.com/geodesa-ai/chalice.git", rev = "42825ef4c5e1879fd619562fa31572b59d86ac5f" }
-candle-nn = { package = "chalice-nn", git = "ssh://git@github.com/geodesa-ai/chalice.git", rev = "42825ef4c5e1879fd619562fa31572b59d86ac5f" }
-candle-transformers = { package = "chalice-transformers", git = "ssh://git@github.com/geodesa-ai/chalice.git", rev = "42825ef4c5e1879fd619562fa31572b59d86ac5f" }
-candle-flash-attn = { package = "chalice-flash-attn", git = "ssh://git@github.com/geodesa-ai/chalice.git", rev = "42825ef4c5e1879fd619562fa31572b59d86ac5f" }
-candle-flash-attn-v1 = { version = "0.0.1" }
+chalice = { package = "chalice-core", git = "ssh://git@github.com/geodesa-ai/chalice.git", rev = "63bdbb4cc35ad04fed8e623eb2d6e0cf3a09af27" }
+chalice-nn = { package = "chalice-nn", git = "ssh://git@github.com/geodesa-ai/chalice.git", rev = "63bdbb4cc35ad04fed8e623eb2d6e0cf3a09af27" }
+chalice-transformers = { package = "chalice-transformers", git = "ssh://git@github.com/geodesa-ai/chalice.git", rev = "63bdbb4cc35ad04fed8e623eb2d6e0cf3a09af27" }
+chalice-flash-attn = { package = "chalice-flash-attn", git = "ssh://git@github.com/geodesa-ai/chalice.git", rev = "63bdbb4cc35ad04fed8e623eb2d6e0cf3a09af27" }
 half = { version = "2.3.1", features = ["num-traits"] }
 
 [profile.release]

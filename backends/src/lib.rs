@@ -13,7 +13,7 @@ use text_embeddings_backend_core::{Backend as CoreBackend, Predictions};
 use tokio::sync::{mpsc, oneshot, watch};
 use tracing::{instrument, Span};
 
-#[cfg(feature = "candle")]
+#[cfg(feature = "chalice")]
 use serde::Deserialize;
 
 pub use crate::dtype::DType;
@@ -21,8 +21,8 @@ pub use text_embeddings_backend_core::{
     BackendError, Batch, Embedding, Embeddings, ModelType, Pool,
 };
 
-#[cfg(feature = "candle")]
-use text_embeddings_backend_candle::CandleBackend;
+#[cfg(feature = "chalice")]
+use text_embeddings_backend_chalice::ChaliceBackend;
 
 #[cfg(feature = "ort")]
 use text_embeddings_backend_ort::OrtBackend;
@@ -417,7 +417,7 @@ async fn init_backend(
     }
 
     if let Some(api_repo) = api_repo.as_ref() {
-        if cfg!(feature = "python") || cfg!(feature = "candle") {
+        if cfg!(feature = "python") || cfg!(feature = "chalice") {
             let start = std::time::Instant::now();
             if download_safetensors(api_repo.clone()).await.is_err() {
                 tracing::warn!("safetensors weights not found. Using `pytorch_model.bin` instead. Model loading will be significantly slower.");
@@ -432,8 +432,8 @@ async fn init_backend(
         }
     }
 
-    if cfg!(feature = "candle") {
-        #[cfg(feature = "candle")]
+    if cfg!(feature = "chalice") {
+        #[cfg(feature = "chalice")]
         {
             let dense_paths = if let Some(api_repo) = api_repo.as_ref() {
                 let start = std::time::Instant::now();
@@ -479,7 +479,7 @@ async fn init_backend(
                 }
             };
 
-            let backend = CandleBackend::new(
+            let backend = ChaliceBackend::new(
                 &model_path,
                 dtype.to_string(),
                 model_type.clone(),
@@ -488,7 +488,7 @@ async fn init_backend(
             match backend {
                 Ok(b) => return Ok(Box::new(b)),
                 Err(err) => {
-                    tracing::error!("Could not start Candle backend: {err}");
+                    tracing::error!("Could not start Chalice backend: {err}");
                     backend_start_failed = true;
                 }
             }
@@ -677,7 +677,7 @@ async fn download_onnx(api: &ApiRepo) -> Result<Vec<PathBuf>, ApiError> {
     Ok(model_files)
 }
 
-#[cfg(feature = "candle")]
+#[cfg(feature = "chalice")]
 #[derive(Debug, Clone, Deserialize, PartialEq)]
 enum ModuleType {
     #[serde(rename = "sentence_transformers.models.Dense")]
@@ -690,7 +690,7 @@ enum ModuleType {
     Transformer,
 }
 
-#[cfg(feature = "candle")]
+#[cfg(feature = "chalice")]
 #[derive(Debug, Clone, Deserialize)]
 struct ModuleConfig {
     #[allow(dead_code)]
@@ -702,13 +702,13 @@ struct ModuleConfig {
     module_type: ModuleType,
 }
 
-#[cfg(feature = "candle")]
+#[cfg(feature = "chalice")]
 async fn download_file(api: &ApiRepo, file_path: &str) -> Result<PathBuf, ApiError> {
     tracing::info!("Downloading `{}`", file_path);
     api.get(file_path).await
 }
 
-#[cfg(feature = "candle")]
+#[cfg(feature = "chalice")]
 async fn parse_dense_paths_from_modules(
     modules_path: &PathBuf,
 ) -> Result<Vec<String>, std::io::Error> {
@@ -723,7 +723,7 @@ async fn parse_dense_paths_from_modules(
         .collect::<Vec<String>>())
 }
 
-#[cfg(feature = "candle")]
+#[cfg(feature = "chalice")]
 #[instrument(skip_all)]
 pub async fn download_dense_modules(
     api: &ApiRepo,
@@ -800,7 +800,7 @@ pub async fn download_dense_modules(
     }
 }
 
-#[cfg(feature = "candle")]
+#[cfg(feature = "chalice")]
 async fn download_dense_module(api: &ApiRepo, dense_path: &str) -> Result<PathBuf, ApiError> {
     // Download `config.json` for the Dense module
     let config_file = format!("{}/config.json", dense_path);

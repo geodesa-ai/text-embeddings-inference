@@ -118,7 +118,7 @@ struct Args {
     ///
     /// Note that this argument is optional, only required to be set if there is no `modules.json`
     /// file or when you want to override a single Dense module path, only when running with the
-    /// `candle` backend.
+    /// `chalice` backend.
     #[clap(long, env)]
     dense_path: Option<String>,
 

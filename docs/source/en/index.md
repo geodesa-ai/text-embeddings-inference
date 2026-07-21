@@ -26,7 +26,7 @@ TEI offers multiple features tailored to optimize the deployment process and enh
 * **Streamlined Deployment:** TEI eliminates the need for a model graph compilation step for an easier deployment process.
 * **Efficient Resource Utilization:** Benefit from small Docker images and rapid boot times, allowing for true serverless capabilities.
 * **Dynamic Batching:** TEI incorporates token-based dynamic batching thus optimizing resource utilization during inference.
-* **Optimized Inference:** TEI leverages [Flash Attention](https://github.com/HazyResearch/flash-attention), [Candle](https://github.com/huggingface/candle), and [cuBLASLt](https://docs.nvidia.com/cuda/cublas/#using-the-cublaslt-api) by using optimized transformers code for inference.
+* **Optimized Inference:** TEI leverages [Flash Attention](https://github.com/HazyResearch/flash-attention), [Chalice](https://github.com/geodesa-ai/chalice), and [cuBLASLt](https://docs.nvidia.com/cuda/cublas/#using-the-cublaslt-api) by using optimized transformers code for inference.
 * **Safetensors weight loading:** TEI loads [Safetensors](https://github.com/huggingface/safetensors) weights for faster boot times.
 * **Production-Ready:** TEI supports distributed tracing through Open Telemetry and exports Prometheus metrics.
 

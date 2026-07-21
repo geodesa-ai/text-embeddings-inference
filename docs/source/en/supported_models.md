@@ -88,4 +88,4 @@ Find the appropriate Docker image for your hardware in the following table:
 | Hopper (H100)                       | ghcr.io/huggingface/text-embeddings-inference:hopper-1.8 (experimental)  |
 
 **Warning**: Flash Attention is turned off by default for the Turing image as it suffers from precision issues.
-You can turn Flash Attention v1 ON by using the `USE_FLASH_ATTENTION=True` environment variable.
+You can enable FlashAttention by using the `USE_FLASH_ATTENTION=True` environment variable.
