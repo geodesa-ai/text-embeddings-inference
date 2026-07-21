@@ -82,7 +82,7 @@ impl OrtBackend {
             ModelType::Embedding(pool) => match pool {
                 Pool::Splade => {
                     return Err(BackendError::Start(format!(
-                        "Pooling {pool} is not supported for `ort`, use `candle` instead."
+                        "Pooling {pool} is not supported for `ort`, use `chalice` instead."
                     )));
                 }
                 _ => pool,

@@ -44,13 +44,13 @@ This step  can take a while as we need to compile a lot of CUDA kernels.
 ### For Turing GPUs (T4, RTX 2000 series ... )
 
 ```shell
-cargo install --path router -F candle-cuda-turing
+cargo install --path router -F chalice-cuda-turing
 ```
 
 ### For Ampere and Hopper
 
 ```shell
-cargo install --path router -F candle-cuda
+cargo install --path router -F chalice-cuda
 ```
 
 ## Step 4: Launch Text Embeddings Inference

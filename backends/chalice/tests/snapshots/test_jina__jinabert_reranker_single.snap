@@ -1,0 +1,5 @@
+---
+source: backends/chalice/tests/test_jina.rs
+expression: predictions
+---
+- - -0.6045344

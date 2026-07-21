@@ -53,7 +53,7 @@ Ember, GTE and E5. TEI implements many features such as:
 * Small docker images and fast boot times. Get ready for true serverless!
 * Token based dynamic batching
 * Optimized transformers code for inference using [Flash Attention](https://github.com/HazyResearch/flash-attention),
-  [Candle](https://github.com/huggingface/candle)
+  [Chalice](https://github.com/geodesa-ai/chalice)
   and [cuBLASLt](https://docs.nvidia.com/cuda/cublas/#using-the-cublaslt-api)
 * [Safetensors](https://github.com/huggingface/safetensors) weight loading
 * [ONNX](https://github.com/onnx/onnx) weight loading
@@ -238,7 +238,7 @@ Options:
 
           Some embedding models require an extra `Dense` module which contains a single Linear layer and an activation function. By default, those `Dense` modules are stored under the `2_Dense` directory, but there might be cases where different `Dense` modules are provided, to convert the pooled embeddings into different dimensions, available as `2_Dense_<dims>` e.g. https://huggingface.co/NovaSearch/stella_en_400M_v5.
 
-          Note that this argument is optional, only required to be set if the path to the `Dense` module is other than `2_Dense`. And it also applies when leveraging the `candle` backend.
+          Note that this argument is optional, only required to be set if the path to the `Dense` module is other than `2_Dense`. And it also applies when leveraging the `chalice` backend.
 
           [env: DENSE_PATH=]
           [default: 2_Dense]
@@ -338,7 +338,7 @@ Text Embeddings Inference ships with multiple Docker images that you can use to 
 | Hopper (H100)                       | ghcr.io/huggingface/text-embeddings-inference:hopper-1.8 (experimental) |
 
 **Warning**: Flash Attention is turned off by default for the Turing image as it suffers from precision issues.
-You can turn Flash Attention v1 ON by using the `USE_FLASH_ATTENTION=True` environment variable.
+You can enable FlashAttention by using the `USE_FLASH_ATTENTION=True` environment variable.
 
 ### API documentation
 
@@ -535,10 +535,10 @@ Then run:
 # This can take a while as we need to compile a lot of CUDA kernels
 
 # On Turing GPUs (T4, RTX 2000 series ... )
-cargo install --path router -F candle-cuda-turing
+cargo install --path router -F chalice-cuda-turing
 
 # On Ampere and Hopper
-cargo install --path router -F candle-cuda
+cargo install --path router -F chalice-cuda
 ```
 
 You can now launch Text Embeddings Inference on GPU with:

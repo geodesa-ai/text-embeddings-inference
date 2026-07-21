@@ -13,7 +13,7 @@ serde = { workspace = true }
 serde_json = { workspace = true }
 text-embeddings-backend-core = { path = "core" }
 text-embeddings-backend-python = { path = "python", optional = true }
-text-embeddings-backend-candle = { path = "candle", optional = true }
+text-embeddings-backend-chalice = { path = "chalice", optional = true }
 text-embeddings-backend-ort = { path = "ort", optional = true }
 tokio = { workspace = true }
 tracing = { workspace = true }
@@ -23,10 +23,9 @@ rand = { workspace = true }
 clap = ["dep:clap", "text-embeddings-backend-core/clap"]
 python = ["dep:text-embeddings-backend-python"]
 ort = ["dep:text-embeddings-backend-ort"]
-candle = ["dep:text-embeddings-backend-candle"]
-cuda = ["text-embeddings-backend-candle?/cuda"]
-metal = ["text-embeddings-backend-candle?/metal"]
-mkl = ["text-embeddings-backend-candle?/mkl"]
-accelerate = ["text-embeddings-backend-candle?/accelerate"]
-flash-attn = ["text-embeddings-backend-candle?/flash-attn"]
-flash-attn-v1 = ["text-embeddings-backend-candle?/flash-attn-v1"]
+chalice = ["dep:text-embeddings-backend-chalice"]
+cuda = ["text-embeddings-backend-chalice?/cuda"]
+metal = ["text-embeddings-backend-chalice?/metal"]
+mkl = ["text-embeddings-backend-chalice?/mkl"]
+accelerate = ["text-embeddings-backend-chalice?/accelerate"]
+flash-attn = ["text-embeddings-backend-chalice?/flash-attn"]
